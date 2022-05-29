@@ -20,7 +20,8 @@
  * @subpackage Review_Carousel/admin
  * @author     Hafed benchellali <hafed.benchellali@gmail.com>
  */
-class Review_Carousel_Admin {
+class Review_Carousel_Admin
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,11 +48,11 @@ class Review_Carousel_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -59,7 +60,8 @@ class Review_Carousel_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -73,8 +75,7 @@ class Review_Carousel_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/review-carousel-admin.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/review-carousel-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -82,7 +83,8 @@ class Review_Carousel_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -96,17 +98,24 @@ class Review_Carousel_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/review-carousel-admin.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/review-carousel-admin.js', array('jquery'), $this->version, false);
 	}
 
-	public function hb_carousel_menu(){
-		add_menu_page("hb review carousel","Review Carousel","manage_options","hb-review-carousel",array($this, "hb_review_carousel_dashboard"));
+	public function hb_carousel_menu()
+	{
+		add_menu_page("hb review carousel", "Review Carousel", "manage_options", "hb-review-carousel", array($this, "hb_review_carousel_dashboard"));
 	}
 
 	// fonction qui gère le dashboard
-	public function hb_review_carousel_dashboard(){
-		echo ("<h3>COOLL </h3>");
-	}
+	public function hb_review_carousel_dashboard()
+	{
+		ob_start();
 
+		include_once(REVIEW_CAROUSEL_PLUGIN_PATH . "admin/partials/review-carousel-admin-display.php");
+
+		$template = ob_get_contents();
+		ob_end_clean();
+
+		echo $template;
+	}
 }

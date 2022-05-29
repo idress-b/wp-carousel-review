@@ -26,7 +26,7 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if (!defined('WPINC')) {
 	die;
 }
 
@@ -35,14 +35,17 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'REVIEW_CAROUSEL_VERSION', '1.0.0' );
+define('REVIEW_CAROUSEL_VERSION', '1.0.0');
+define('REVIEW_CAROUSEL_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('REVIEW_CAROUSEL_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-review-carousel-activator.php
  */
-function activate_review_carousel() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-review-carousel-activator.php';
+function activate_review_carousel()
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-review-carousel-activator.php';
 	Review_Carousel_Activator::activate();
 }
 
@@ -50,19 +53,20 @@ function activate_review_carousel() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-review-carousel-deactivator.php
  */
-function deactivate_review_carousel() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-review-carousel-deactivator.php';
+function deactivate_review_carousel()
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-review-carousel-deactivator.php';
 	Review_Carousel_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_review_carousel' );
-register_deactivation_hook( __FILE__, 'deactivate_review_carousel' );
+register_activation_hook(__FILE__, 'activate_review_carousel');
+register_deactivation_hook(__FILE__, 'deactivate_review_carousel');
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-review-carousel.php';
+require plugin_dir_path(__FILE__) . 'includes/class-review-carousel.php';
 
 /**
  * Begins execution of the plugin.
@@ -73,10 +77,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-review-carousel.php';
  *
  * @since    1.0.0
  */
-function run_review_carousel() {
+function run_review_carousel()
+{
 
 	$plugin = new Review_Carousel();
 	$plugin->run();
-
 }
 run_review_carousel();

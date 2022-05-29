@@ -13,4 +13,12 @@
  */
 ?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<h1>test</h1>
+<form>
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3">
+        </div>
+
+</form>
